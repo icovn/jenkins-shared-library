@@ -3,7 +3,9 @@ def call(Map config=[:]) {
     return response
 }
 
-def test1(url) {
+def callUrl(url) {
     def response = httpRequest url
-    return response
+    println("Status: "+response.status)
+    println("Content: "+response.content)
+    return response.content
 }
