@@ -24,6 +24,7 @@ def call(Map pipelineParams) {
                     script {
                         pipelineParams.childModules.each { entry ->
                             stage (entry.key) {
+                                agent { label pipelineParams.node }
                                 buildJavaSubModule moduleName: entry.value
                             }
                         }

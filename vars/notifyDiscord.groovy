@@ -6,15 +6,15 @@
  * @return
  */
 def call(Map config=[:]) {
-    def discordUrl = credentials("discord-url")
+    def discordUrl = env.DISCORD_URL
     if (config.type == "docker") {
-        discordUrl = credentials("discord-url-docker")
+        discordUrl = env.DISCORD_URL_DOCKER
     }
     if (config.type == "testFlight") {
-        discordUrl = credentials("discord-url-test-flight")
+        discordUrl = env.DISCORD_URL_TEST_FLIGHT
     }
     if (config.type == "unity") {
-        discordUrl = credentials("discord-url-unity")
+        discordUrl = env.DISCORD_URL_UNITY
     }
 
     discordSend webhookURL: discordUrl, title: config.title, description: config.description
