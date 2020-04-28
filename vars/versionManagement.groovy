@@ -1,4 +1,4 @@
-def call() {
+def callApi() {
     def response = httpRequest 'https://google.com.vn'
     return response
 }
