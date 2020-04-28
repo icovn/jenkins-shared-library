@@ -1,5 +1,5 @@
 def call(Map config = [:], Closure body) {
-    node {
+    node("reactjs") {
         git url: config.url
 
         stage("Install") {
