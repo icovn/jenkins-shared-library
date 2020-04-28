@@ -5,7 +5,7 @@
  */
 def call(Map config=[:]) {
     def gitCommitId = getGitCommitId()
-    def gitFilesChanges = getGitFilesChanged()
+    def gitFilesChanges = getGitFilesChanged(gitCommitId)
     info gitCommitId
     success gitFilesChanges
 }
