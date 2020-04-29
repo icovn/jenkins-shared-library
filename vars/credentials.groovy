@@ -12,8 +12,7 @@ import com.cloudbees.plugins.credentials.CredentialsProvider
  */
 def call(Map config=[:]) {
     def jenkinsCredentials = CredentialsProvider.lookupCredentials(
-            Credentials.class,
-            Jenkins.instance
+            Credentials.class
     );
     for (credential in jenkinsCredentials) {
         if(credential.id == config.id){
