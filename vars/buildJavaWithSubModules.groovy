@@ -21,13 +21,7 @@ def call(Map pipelineParams) {
 
             stage('build child modules') {
                 steps {
-                    script {
-                        pipelineParams.childModules.each { entry ->
-                            stage (entry.key) {
-                                buildJavaSubModule modules: pipelineParams.childModules
-                            }
-                        }
-                    }
+                    buildJavaSubModule modules: pipelineParams.childModules
                 }
             }
         }
