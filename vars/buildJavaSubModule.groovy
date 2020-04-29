@@ -25,5 +25,7 @@ def getGitCommitId() {
 }
 
 def getGitFilesChanged(commitId) {
-    return sh ('git log -m -1 --name-only --pretty="format:" ' + commitId).trim()
+    def command = 'git log -m -1 --name-only --pretty="format:" ' + commitId
+    info command
+    return sh (command).trim()
 }
