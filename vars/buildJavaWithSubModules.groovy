@@ -18,7 +18,8 @@ def call(Map pipelineParams) {
 
     stage('build child modules') {
         steps {
-            buildJavaSubModule modules: pipelineParams.childModules
+            echo "xxx"
+//            buildJavaSubModule modules: pipelineParams.childModules
         }
     }
 }
