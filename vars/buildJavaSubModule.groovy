@@ -1,12 +1,13 @@
+import com.github.icovn.jenkins.Utilities
+
 /**
  * Build java sub module
  * @param config Map variables: moduleName
  * @return
  */
 def call(Map config=[:]) {
-    def gitCommitId = getGitCommitId()
-    info gitCommitId
-    def gitFilesChanges = getGitFilesChanged(gitCommitId)
+    def gitCommitId = Utilities.getGitCommitId()
+    def gitFilesChanges = Utilities.getGitFilesChanged(gitCommitId)
     success gitFilesChanges
     config.modules.each { key, val ->
         println "Map: $key = $val"
@@ -25,6 +26,7 @@ def getGitCommitId() {
 }
 
 def getGitFilesChanged(commitId) {
+    success commitId
     def command = 'git log -m -1 --name-only --pretty="format:" ' + commitId
     info command
     return sh (command).trim()
