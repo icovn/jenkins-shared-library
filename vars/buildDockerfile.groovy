@@ -7,9 +7,9 @@
  * @return
  */
 def call(Map config=[:]) {
-    sh "docker login ${credentials("docker-repo")} --username ${credentials("docker-username")} --password ${credentials("docker-password")}"
+    sh "docker login ${credentials id: 'docker-repo'} --username ${credentials id: 'docker-username'} --password ${credentials id: 'docker-password'}"
     sh "docker build -f ${config.dockerFile} -t ${config.dockerImage} ."
     sh "docker push ${config.dockerImage}"
-    sh "docker logout ${credentials("docker-repo")}"
+    sh "docker logout ${credentials id: 'docker-repo'}"
 }
 

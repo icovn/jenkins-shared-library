@@ -17,11 +17,11 @@ def call(Map pipelineParams) {
                 }
             }
 
-            stage('compile') {
-                steps {
-                    sh 'mvn clean package -DskipTests=true'
-                }
-            }
+//            stage('compile') {
+//                steps {
+//                    sh 'mvn clean package -DskipTests=true'
+//                }
+//            }
 
             stage('build sub modules') {
                 steps {

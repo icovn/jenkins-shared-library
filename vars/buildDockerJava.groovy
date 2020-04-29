@@ -7,7 +7,7 @@
  * @return
  */
 def call(Map config=[:]) {
-    sh "docker login ${credentials("docker-repo")} --username ${credentials("docker-username")} --password ${credentials("docker-password")}"
+    sh "docker login ${credentials id: 'docker-repo'} --username ${credentials id: 'docker-username'} --password ${credentials id: 'docker-password'}"
     sh "cd ${config.moduleName} && mvn package -Dmaven.test.skip=true"
-    sh "docker logout ${credentials("docker-repo")}"
+    sh "docker logout ${credentials id: 'docker-repo'}"
 }
