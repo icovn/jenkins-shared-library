@@ -6,7 +6,9 @@
 def call(Map pipelineParams) {
     pipeline {
         agent {
-            label: pipelineParams.node
+            node {
+                label pipelineParams.node
+            }
         }
         stages {
             stage('checkout git') {
