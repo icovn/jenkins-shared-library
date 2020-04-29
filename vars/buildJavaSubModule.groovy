@@ -6,8 +6,8 @@ import com.github.icovn.jenkins.Utilities
  * @return
  */
 def call(Map config=[:]) {
-    def gitCommitId = Utilities.getGitCommitId()
-    def gitFilesChanges = Utilities.getGitFilesChanged(gitCommitId)
+    def gitCommitId = Utilities.getGitCommitId(this)
+    def gitFilesChanges = Utilities.getGitFilesChanged(this, gitCommitId)
     success gitFilesChanges
     config.modules.each { key, val ->
         println "Map: $key = $val"
@@ -19,15 +19,4 @@ def buildDocker() {
     sh "docker build -f ${config.dockerFile} -t ${config.dockerImage} ."
     sh "docker push ${config.dockerImage}"
     sh "docker logout ${env.DOCKER_REPO}"
-}
-
-def getGitCommitId() {
-    return sh ("git rev-parse --short HEAD").trim()
-}
-
-def getGitFilesChanged(commitId) {
-    success commitId
-    def command = 'git log -m -1 --name-only --pretty="format:" ' + commitId
-    info command
-    return sh (command).trim()
 }
