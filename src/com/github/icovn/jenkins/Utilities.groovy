@@ -15,6 +15,7 @@ class Utilities implements Serializable {
         script.sh "printf 'commitId: ${commitId}'"
         def command = "git log -m -1 --name-only --pretty=\"format:\" ${commitId}"
         script.sh "printf 'command: ${command}'"
-        return script.sh (command).trim()
+        //return script.sh (command).trim()
+        return script.sh (command)
     }
 }
