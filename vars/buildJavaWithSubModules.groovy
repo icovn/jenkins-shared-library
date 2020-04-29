@@ -5,7 +5,6 @@
  */
 def call(Map pipelineParams) {
     pipeline {
-        agent any
         stages {
             stage('checkout git') {
                 steps {
@@ -24,7 +23,6 @@ def call(Map pipelineParams) {
                     script {
                         pipelineParams.childModules.each { entry ->
                             stage (entry.key) {
-                                agent { label pipelineParams.node }
                                 buildJavaSubModule moduleName: entry.value
                             }
                         }
