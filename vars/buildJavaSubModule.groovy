@@ -4,11 +4,13 @@
  * @return
  */
 def call(Map config=[:]) {
-    error config.moduleName
     def gitCommitId = getGitCommitId()
     info gitCommitId
     def gitFilesChanges = getGitFilesChanged(gitCommitId)
     success gitFilesChanges
+    config.modules.each { key, val ->
+        println "Map: $key = $val"
+    }
 }
 
 def buildDocker() {
