@@ -21,6 +21,6 @@ def call(Map config=[:]) {
         discordUrl = credentials id: 'discord-url-unity'
     }
 
-    info "discordUrl: ${discordUrl}"
+    sh "printf 'discordUrl: ${discordUrl}'"
     discordSend webhookURL: discordUrl, title: config.title, description: config.description
 }
