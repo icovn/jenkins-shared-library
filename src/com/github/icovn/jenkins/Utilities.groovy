@@ -12,9 +12,9 @@ class Utilities implements Serializable {
     }
 
     static def getGitFilesChanged(script, commitId) {
-        script.info "commitId: ${commitId}"
+        script.sh "printf 'commitId: ${commitId}'"
         def command = "git log -m -1 --name-only --pretty=\"format:\" ${commitId}"
-        script.info "command: ${command}"
+        script.sh "printf 'command: ${command}'"
         return script.sh (command).trim()
     }
 }
