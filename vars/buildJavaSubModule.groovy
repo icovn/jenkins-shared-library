@@ -7,10 +7,12 @@ import com.github.icovn.jenkins.Utilities
  */
 def call(Map config=[:]) {
     def gitCommitId = Utilities.getGitCommitId(this)
+    log.info("gitCommitId: ${gitCommitId}")
     def gitFilesChanges = Utilities.getGitFilesChanged(this, gitCommitId)
-    success gitFilesChanges
+    log.success("gitFilesChanges: ${gitFilesChanges}")
+
     config.modules.each { key, val ->
-        println "Map: $key = $val"
+        log.info("Map: $key = $val")
     }
 }
 
