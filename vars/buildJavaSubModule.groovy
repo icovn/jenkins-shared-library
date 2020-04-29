@@ -4,9 +4,10 @@
  * @return
  */
 def call(Map config=[:]) {
+    error config.moduleName
     def gitCommitId = getGitCommitId()
-    def gitFilesChanges = getGitFilesChanged(gitCommitId)
     info gitCommitId
+    def gitFilesChanges = getGitFilesChanged(gitCommitId)
     success gitFilesChanges
 }
 

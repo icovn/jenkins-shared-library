@@ -20,13 +20,12 @@ def call(Map pipelineParams) {
             stage('build') {
                 steps {
                     sh 'mvn clean package -DskipTests=true'
-                    echo 'xxx'
                 }
             }
 
-            stage('build child modules') {
-                steps {
-                    buildJavaSubModule modules: pipelineParams.childModules
+            pipelineParams.childModules.each { entry ->
+                stage (entry.key) {
+                    buildDockerJava moduleName: entry.value
                 }
             }
         }
